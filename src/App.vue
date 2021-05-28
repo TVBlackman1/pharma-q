@@ -24,3 +24,10 @@ export default {
   }),
 };
 </script>
+<style lang="scss">
+
+.v-application {
+  background-color: #FAFEFF;
+}
+
+</style>

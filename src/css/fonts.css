@@ -7,3 +7,18 @@
     font-family: PT-Sans-regular;
     src: url("~@/assets/fonts/PTSans-Regular.ttf");
 }
+
+@font-face {
+    font-family: PT-Sans-bold;
+    src: url("~@/assets/fonts/PTSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: Montserrat-regular;
+    src: url("~@/assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: Montserrat-medium;
+    src: url("~@/assets/fonts/Montserrat-Medium.ttf");
+}
