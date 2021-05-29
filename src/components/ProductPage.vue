@@ -14,6 +14,7 @@
   </div>
 
   <similar-products />
+  <ad-section />
 </div>
 </template>
 
@@ -22,9 +23,10 @@ import SliderCurrent from "@/components/SliderCurrent";
 import InfoPrice from "@/components/InfoPrice";
 import HowToTake from "@/components/HowToTake";
 import SimilarProducts from "@/components/SimilarProducts";
+import AdSection from "@/components/ad-section";
 export default {
   name: "ProductPage",
-  components: {SimilarProducts, HowToTake, InfoPrice, SliderCurrent}
+  components: {AdSection, SimilarProducts, HowToTake, InfoPrice, SliderCurrent}
 }
 </script>
 
@@ -38,7 +40,7 @@ export default {
   & .main {
     display: grid;
     grid-template-columns: 586px 460px 1fr;
-    grid-template-rows: 56px 400px;
+    grid-template-rows: 56px minmax(auto, max-content);
     grid-column-gap: 10px;
     grid-row-gap: 20px;
     & div {

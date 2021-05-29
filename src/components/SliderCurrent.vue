@@ -43,7 +43,6 @@ export default {
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 3px solid #E2F9FC;
-
 }
 
 .other-images {
