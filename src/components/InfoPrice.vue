@@ -53,6 +53,7 @@ export default {
 }
 
 .price-section {
+  margin-top: 30px;
   & .before-price {
     font-size: 18px;
     font-family: PT-Sans-regular, serif;

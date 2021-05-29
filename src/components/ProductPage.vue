@@ -10,17 +10,21 @@
 
     <slider-current />
     <info-price />
-    <div class="how-to-take"></div>
+    <how-to-take />
   </div>
+
+  <similar-products />
 </div>
 </template>
 
 <script>
 import SliderCurrent from "@/components/SliderCurrent";
 import InfoPrice from "@/components/InfoPrice";
+import HowToTake from "@/components/HowToTake";
+import SimilarProducts from "@/components/SimilarProducts";
 export default {
   name: "ProductPage",
-  components: {InfoPrice, SliderCurrent}
+  components: {SimilarProducts, HowToTake, InfoPrice, SliderCurrent}
 }
 </script>
 
@@ -29,12 +33,12 @@ export default {
 
 .product-page {
   width: 90%;
-  margin: 150px auto auto;
+  margin: 120px auto auto;
 
   & .main {
     display: grid;
-    grid-template-columns: 586px 1fr 1fr;
-    grid-template-rows: 56px 600px;
+    grid-template-columns: 586px 460px 1fr;
+    grid-template-rows: 56px 400px;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
     & div {

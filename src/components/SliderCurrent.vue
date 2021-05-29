@@ -4,7 +4,7 @@
     <div class="other-images">
       <div class="image-handler arrow arrow-top"></div>
       <ul class="elems">
-        <li class="image-handler other"></li>
+        <li class="image-handler other picked"></li>
         <li class="image-handler other"></li>
         <li class="image-handler other"></li>
       </ul>
@@ -42,6 +42,8 @@ export default {
   background-image: url("~@/assets/images/kagocel-10tab.jpg");
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  border: 3px solid #E2F9FC;
+
 }
 
 .other-images {
@@ -65,6 +67,11 @@ export default {
   margin: 0.6em 0;
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  border: 3px solid #E2F9FC;
+
+  &.picked {
+    border: 3px solid #7CA7AC;
+  }
 
   &:hover {
     cursor: pointer;

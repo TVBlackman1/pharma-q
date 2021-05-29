@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 
 .v-application {
-  background-color: #FAFEFF;
+  background-color: #FAFEFF !important;
 }
 
 </style>
