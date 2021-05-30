@@ -22,7 +22,7 @@ export default {
 .catalog-btn .btn {
   padding: 0.1em 0.5em;
   margin: 0;
-  background-color: #C3EAFF;
+  background-color: $qq-strong;
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@ export default {
 
   & .svg-elem {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     background-size: 24px 24px;
     background: url("~@/assets/svg/menu_black_24dp.svg");
     height: 24px;

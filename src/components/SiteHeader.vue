@@ -26,11 +26,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+@import '~vuetify/src/styles/styles';
+
 .header {
   width: 100%;
   height: 72px;
-  background: #E2F9FC;
+  background: $qq-header-color;
   position: fixed;
   top: 0;
   left: 0;

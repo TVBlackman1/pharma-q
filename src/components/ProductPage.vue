@@ -1,20 +1,25 @@
 <template>
 <div class="product-page">
-  <div class="main">
-    <div class="pres">
-      <div class="name">Кагоцел</div>
-      <div class="rating">рейтинг</div>
+  <div class="container">
+    <div class="main">
+      <div class="pres">
+        <div class="name">Кагоцел</div>
+        <div class="rating">рейтинг</div>
+      </div>
+      <div></div>
+      <div></div>
+
+      <slider-current />
+      <info-price />
+      <how-to-take />
     </div>
-    <div></div>
-    <div></div>
 
-    <slider-current />
-    <info-price />
-    <how-to-take />
+    <similar-products />
   </div>
-
-  <similar-products />
   <ad-section />
+  <div class="container">
+    <product-page-tabs />
+  </div>
 </div>
 </template>
 
@@ -24,18 +29,27 @@ import InfoPrice from "@/components/InfoPrice";
 import HowToTake from "@/components/HowToTake";
 import SimilarProducts from "@/components/SimilarProducts";
 import AdSection from "@/components/ad-section";
+import ProductPageTabs from "@/components/ProductPageTabs";
 export default {
   name: "ProductPage",
-  components: {AdSection, SimilarProducts, HowToTake, InfoPrice, SliderCurrent}
+  components: {ProductPageTabs, AdSection, SimilarProducts, HowToTake, InfoPrice, SliderCurrent}
 }
 </script>
 
 <style scoped lang="scss">
 @import '~@/css/fonts.css';
 
+.v-stepper__wrapper {
+  transition:none !important;
+}
+
 .product-page {
-  width: 90%;
   margin: 120px auto auto;
+
+  & .container {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   & .main {
     display: grid;
@@ -68,5 +82,13 @@ export default {
       align-items: center;
     }
   }
+
+  & ._tabs {
+    $tabs-bar-background-color: black;
+    & ._tab {
+      $tab-font-size: 30px;
+    }
+  }
 }
+
 </style>

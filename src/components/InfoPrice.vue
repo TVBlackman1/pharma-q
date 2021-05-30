@@ -87,14 +87,14 @@ export default {
   margin-top: 20px;
   display: inline-block;
   padding: 0.15em 1.8em;
-  background-color: #E2F1F3;
+  background-color: $qq-neutral;
   border-radius: 6px;
   font-size: 18px;
   font-family: PT-Sans-regular, serif;
 
   &:hover {
     cursor: pointer;
-    background-color: #CDE6EA;
+    background-color: $qq-neutral-active;
   }
 
 }
