@@ -1,8 +1,8 @@
 <template>
   <div class="product-page-tabs">
-    <v-tabs class="_tabs" color="deep-orange accent-2" v-model="tab">
-      <v-tab class="_tab">Отзывы</v-tab>
-      <v-tab>Где купить</v-tab>
+    <v-tabs class="_tabs" color="deep-orange accent-2" v-model="tab" background-color="#FAFEFF">
+      <v-tab>Отзывы</v-tab>
+      <v-tab disabled>Где купить</v-tab>
       <v-tab disabled>Заказать на сайте</v-tab>
     </v-tabs>
 
