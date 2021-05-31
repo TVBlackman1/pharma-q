@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-main>
-      <site-header />
       <product-page />
+      <site-header />
     </v-main>
   </v-app>
 </template>
