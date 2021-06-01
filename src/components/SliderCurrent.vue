@@ -7,14 +7,14 @@
 
     <div class="other-images">
       <div class="image-handler arrow arrow-top"></div>
-      <ul class="elems" ref="secondaryImages">
-        <li class="image-handler other" @click="secondaryImagesHandleClick" key="1">
+      <ul class="elems" ref="secondaryImages" @click="secondaryImagesHandleClick">
+        <li class="image-handler other" key="1">
           <img :src="image1_url" alt="" class="img-inner">
         </li>
-        <li class="image-handler other" @click="secondaryImagesHandleClick" key="2">
+        <li class="image-handler other" key="2">
           <img :src="image2_url" alt="" class="img-inner">
         </li>
-        <li class="image-handler other" @click="secondaryImagesHandleClick" key="3">
+        <li class="image-handler other" key="3">
           <img :src="image3_url" alt="" class="img-inner">
         </li>
       </ul>
@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
     this.$secondaryImages = this.$refs.secondaryImages.querySelectorAll(".other");
-    this.selectedElement = this.$secondaryImages[0]
+    this.selectedElement = this.$secondaryImages[0].querySelector("img")
   },
   watch: {
     selectedElement: [
@@ -47,16 +47,19 @@ export default {
   },
   methods: {
     secondaryImagesHandleClick($event) {
-      this.selectedElement = $event.target
+      let target = $event.target
+      if(target.tagName !== "IMG")
+        return
+      this.selectedElement = target
     },
     changeSecondaryStyle(val, oldVal) {
-      oldVal?.classList.remove('picked')
-      val.classList.toggle("picked")
+      val.parentElement.classList.toggle("picked")
+      oldVal?.parentElement.classList.remove('picked')
     },
     async setCurrentImageFromSecondary(val) {
       console.log("!", val.style.borderColor)
-      const url = await this._serverGetImageURL(this.image1_url)
-      console.log(url)
+      // const url = await this._serverGetImageURL(this.image1_url)
+      // console.log(url)
       // this.$refs.mainImageHandler.style.backgroundImage = url
       this.$refs.imgTest.src = val.src
     },
