@@ -3,10 +3,10 @@
     <div class="image image-handler"></div>
     <div class="other-images">
       <div class="image-handler arrow arrow-top"></div>
-      <ul class="elems">
-        <li class="image-handler other picked"></li>
-        <li class="image-handler other"></li>
-        <li class="image-handler other"></li>
+      <ul class="elems" ref="secondaryImages">
+        <li class="image-handler other picked" @click="secondaryImagesHandleClick"></li>
+        <li class="image-handler other" @click="secondaryImagesHandleClick"></li>
+        <li class="image-handler other" @click="secondaryImagesHandleClick"></li>
       </ul>
       <div class="image-handler arrow arrow-bottom"></div>
     </div>
@@ -16,7 +16,24 @@
 
 <script>
 export default {
-  name: "SliderCurrent"
+  name: "SliderCurrent",
+  data() {
+    return {
+      $secondaryImages: []
+    }
+  },
+  mounted() {
+    this.$secondaryImages = this.$refs.secondaryImages.querySelectorAll(".other");
+  },
+  methods: {
+    secondaryImagesHandleClick($event) {
+      this.$secondaryImages.forEach((el) => {
+        el.classList.remove('picked')
+      })
+      let $element = $event.target
+      $element.classList.toggle("picked")
+    }
+  }
 }
 </script>
 
