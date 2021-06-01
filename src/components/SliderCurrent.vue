@@ -1,13 +1,22 @@
 <template>
   <div class="slider">
-    <div class="image image-handler" ref="mainImageHandler"></div>
+<!--    <div class="image image-handler" ref="mainImageHandler">-->
+<!--      -->
+<!--    </div>-->
+    <img src="" alt="no image" ref="imgTest" class="image image-handler">
+
     <div class="other-images">
-      <img src="" alt="no image" ref="imgTest">
       <div class="image-handler arrow arrow-top"></div>
       <ul class="elems" ref="secondaryImages">
-        <li class="image-handler other img1" @click="secondaryImagesHandleClick" key="1"></li>
-        <li class="image-handler other img2" @click="secondaryImagesHandleClick" key="2"></li>
-        <li class="image-handler other img3" @click="secondaryImagesHandleClick" key="3"></li>
+        <li class="image-handler other" @click="secondaryImagesHandleClick" key="1">
+          <img :src="image1_url" alt="" class="img-inner">
+        </li>
+        <li class="image-handler other" @click="secondaryImagesHandleClick" key="2">
+          <img :src="image2_url" alt="" class="img-inner">
+        </li>
+        <li class="image-handler other" @click="secondaryImagesHandleClick" key="3">
+          <img :src="image3_url" alt="" class="img-inner">
+        </li>
       </ul>
       <div class="image-handler arrow arrow-bottom"></div>
     </div>
@@ -46,12 +55,10 @@ export default {
     },
     async setCurrentImageFromSecondary(val) {
       console.log("!", val.style.borderColor)
-      // this.$refs.mainImageHandler.style.backgroundColor = "#000"
-      // this.$refs.mainImageHandler.style.backgroundImage = val.style.backgroundImage
       const url = await this._serverGetImageURL(this.image1_url)
       console.log(url)
-      this.$refs.mainImageHandler.style.backgroundImage = url
-      this.$refs.imgTest.src = url
+      // this.$refs.mainImageHandler.style.backgroundImage = url
+      this.$refs.imgTest.src = val.src
     },
   },
   mixins: [serverImageHandler],
@@ -106,27 +113,12 @@ export default {
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 3px solid #E2F9FC;
+  overflow: hidden;
 
-  &.img1 {
-    background: url("~@/assets/images/kagocel-10tab.jpg");
-    background-size: cover;
+  & .img-inner {
+    width: 100%;
+    height: 100%;
   }
-
-  &.img2 {
-    background: url("~@/assets/images/kagocel-10tab-2.jpg");
-    background-size: cover;
-  }
-
-  &.img3 {
-    background: url("~@/assets/images/kagocel-10tab-3.jpg");
-    background-size: cover;
-  }
-
-  &.img4 {
-    background: url("~@/assets/images/kagocel-10tab-4.jpg");
-    background-size: cover;
-  }
-
 
   &.picked {
     border: 3px solid #7CA7AC;
