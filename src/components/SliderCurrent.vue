@@ -1,12 +1,13 @@
 <template>
   <div class="slider">
-    <div class="image image-handler"></div>
+    <div class="image image-handler" ref="mainImageHandler"></div>
     <div class="other-images">
+      <img src="" alt="no image" ref="imgTest">
       <div class="image-handler arrow arrow-top"></div>
       <ul class="elems" ref="secondaryImages">
-        <li class="image-handler other picked" @click="secondaryImagesHandleClick"></li>
-        <li class="image-handler other" @click="secondaryImagesHandleClick"></li>
-        <li class="image-handler other" @click="secondaryImagesHandleClick"></li>
+        <li class="image-handler other img1" @click="secondaryImagesHandleClick" key="1"></li>
+        <li class="image-handler other img2" @click="secondaryImagesHandleClick" key="2"></li>
+        <li class="image-handler other img3" @click="secondaryImagesHandleClick" key="3"></li>
       </ul>
       <div class="image-handler arrow arrow-bottom"></div>
     </div>
@@ -15,25 +16,45 @@
 </template>
 
 <script>
+import serverImageHandler from "@/mixins/serverImageHandler";
+
 export default {
   name: "SliderCurrent",
   data() {
     return {
-      $secondaryImages: []
+      $secondaryImages: [],
+      selectedElement: null,
     }
   },
   mounted() {
     this.$secondaryImages = this.$refs.secondaryImages.querySelectorAll(".other");
+    this.selectedElement = this.$secondaryImages[0]
+  },
+  watch: {
+    selectedElement: [
+        'changeSecondaryStyle',
+        'setCurrentImageFromSecondary'
+    ]
   },
   methods: {
     secondaryImagesHandleClick($event) {
-      this.$secondaryImages.forEach((el) => {
-        el.classList.remove('picked')
-      })
-      let $element = $event.target
-      $element.classList.toggle("picked")
-    }
-  }
+      this.selectedElement = $event.target
+    },
+    changeSecondaryStyle(val, oldVal) {
+      oldVal?.classList.remove('picked')
+      val.classList.toggle("picked")
+    },
+    async setCurrentImageFromSecondary(val) {
+      console.log("!", val.style.borderColor)
+      // this.$refs.mainImageHandler.style.backgroundColor = "#000"
+      // this.$refs.mainImageHandler.style.backgroundImage = val.style.backgroundImage
+      const url = await this._serverGetImageURL(this.image1_url)
+      console.log(url)
+      this.$refs.mainImageHandler.style.backgroundImage = url
+      this.$refs.imgTest.src = url
+    },
+  },
+  mixins: [serverImageHandler],
 }
 </script>
 
@@ -52,11 +73,12 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .image {
   background-color: #FFFFFF;
   height: 301px;
   width: 400px;
-  background-image: url("~@/assets/images/kagocel-10tab.jpg");
+  //background-image: url("~@/assets/images/kagocel-10tab.jpg");
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 3px solid #E2F9FC;
@@ -75,7 +97,7 @@ export default {
   padding: 0;
 }
 
-.other{
+.other {
   background-color: #FFFFFF;
   height: 58px;
   width: 58px;
@@ -84,6 +106,27 @@ export default {
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 3px solid #E2F9FC;
+
+  &.img1 {
+    background: url("~@/assets/images/kagocel-10tab.jpg");
+    background-size: cover;
+  }
+
+  &.img2 {
+    background: url("~@/assets/images/kagocel-10tab-2.jpg");
+    background-size: cover;
+  }
+
+  &.img3 {
+    background: url("~@/assets/images/kagocel-10tab-3.jpg");
+    background-size: cover;
+  }
+
+  &.img4 {
+    background: url("~@/assets/images/kagocel-10tab-4.jpg");
+    background-size: cover;
+  }
+
 
   &.picked {
     border: 3px solid #7CA7AC;
