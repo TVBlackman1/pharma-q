@@ -7,14 +7,14 @@
 
     <div class="other-images">
       <div class="image-handler arrow arrow-top"></div>
-      <ul class="elems" ref="secondaryImages" @click="secondaryImagesHandleClick">
-        <li class="image-handler other" key="1">
+      <ul class="list-elems" ref="secondaryImages" @click="secondaryImagesHandleClick">
+        <li class="image-handler list-elem" key="1">
           <img :src="image1_url" alt="" class="img-inner">
         </li>
-        <li class="image-handler other" key="2">
+        <li class="image-handler list-elem" key="2">
           <img :src="image2_url" alt="" class="img-inner">
         </li>
-        <li class="image-handler other" key="3">
+        <li class="image-handler list-elem" key="3">
           <img :src="image3_url" alt="" class="img-inner">
         </li>
       </ul>
@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted() {
-    this.$secondaryImages = this.$refs.secondaryImages.querySelectorAll(".other");
+    this.$secondaryImages = this.$refs.secondaryImages.querySelectorAll(".list-elem");
     this.selectedElement = this.$secondaryImages[0].querySelector("img")
   },
   watch: {
@@ -48,7 +48,7 @@ export default {
   methods: {
     secondaryImagesHandleClick($event) {
       let target = $event.target
-      if(target.tagName !== "IMG")
+      if(target.tagName.toLowerCase() !== "img")
         return
       this.selectedElement = target
     },
@@ -58,10 +58,11 @@ export default {
     },
     async setCurrentImageFromSecondary(val) {
       console.log("!", val.style.borderColor)
-      // const url = await this._serverGetImageURL(this.image1_url)
-      // console.log(url)
+      const url = await this._serverGetImageURL("http://95.79.208.251:25565/productsImages/kagocel-10tab-4.jpg")
+      console.log(url)
+      this.$refs.imgTest.src = url
       // this.$refs.mainImageHandler.style.backgroundImage = url
-      this.$refs.imgTest.src = val.src
+      // this.$refs.imgTest.src = val.src
     },
   },
   mixins: [serverImageHandler],
@@ -102,12 +103,12 @@ export default {
   margin-left: 20px;
 }
 
-.elems {
+.list-elems {
   width: fit-content;
   padding: 0;
 }
 
-.other {
+.list-elem {
   background-color: #FFFFFF;
   height: 58px;
   width: 58px;
