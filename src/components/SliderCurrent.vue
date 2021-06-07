@@ -1,16 +1,9 @@
 <template>
   <div class="slider">
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
-      <swiper-slide>Slide 6</swiper-slide>
-      <swiper-slide>Slide 7</swiper-slide>
-      <swiper-slide>Slide 8</swiper-slide>
-      <swiper-slide>Slide 9</swiper-slide>
-      <swiper-slide>Slide 10</swiper-slide>
+      <swiper-slide v-for="(elem, ind) in imgSources" :key="ind">
+        <img :src="elem" alt="not loaded">
+      </swiper-slide>
       <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
 
       <!--      <div class="swiper-button-prev" slot="button-prev"></div>-->
@@ -50,11 +43,18 @@ export default {
   name: "SliderCurrent",
   data() {
     return {
-      $secondaryImages: [],
+      imgSources: [
+        "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg",
+        "http://95.79.208.251:25565/productsImages/kagocel-10tab-2.jpg",
+        "http://95.79.208.251:25565/productsImages/kagocel-10tab-3.jpg",
+        "http://95.79.208.251:25565/productsImages/kagocel-10tab-4.jpg"
+
+      ],
       selectedElement: null,
       swiperOption: {
-        direction: 'vertical',
-        slidesPerView: 3,
+        // direction: 'vertical',
+        slidesPerView: 1,
+        centeredSlides: true,
         spaceBetween: 30,
         slidesPerGroup: 1,
         mousewheel: true,
@@ -64,7 +64,7 @@ export default {
           el: '.swiper-pagination',
           clickable: true,
           renderBullet(index, className) {
-            return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
+            return `<span class="${className} swiper-pagination-bullet-custom"></span>`
           }
         },
         navigation: {
@@ -130,32 +130,33 @@ export default {
   //align-items: center;
   //text-align: center;
   height: 300px;
-  width: 400px;
+  width: 500px;
 }
 
 .swiper {
-  height: 300px;
+  height: 100%;
   width: 100%;
 
   &::v-deep .swiper-pagination-bullet-custom {
-    $size: 20px;
+    $size: 10px;
     width: $size !important;
     height: $size !important;
     line-height: $size !important;
     text-align: center;
-    color: #A6A9FF;
+    color: black;
     opacity: 0.7;
-    background: rgba(12, 14, 15, 0.2);
+    background: $qq-neutral;
     transition: all 0.15s;
 
     &:hover {
       opacity: 1;
+      background-color: $qq-strong;
     }
 
     &.swiper-pagination-bullet-active {
       opacity: 1;
       color: #fff;
-      background: #000000 !important;
+      background: $qq-neutral-active !important;
     }
   }
 }
