@@ -137,13 +137,13 @@ export default {
   height: 300px;
   width: 100%;
 
-  .swiper-pagination-bullet-custom {
-    $size: 100px;
+  &::v-deep .swiper-pagination-bullet-custom {
+    $size: 20px;
     width: $size !important;
     height: $size !important;
     line-height: $size !important;
     text-align: center;
-    color: #696969;
+    color: #A6A9FF;
     opacity: 0.7;
     background: rgba(12, 14, 15, 0.2);
     transition: all 0.15s;
@@ -155,7 +155,7 @@ export default {
     &.swiper-pagination-bullet-active {
       opacity: 1;
       color: #fff;
-      background: #007aff;
+      background: #000000 !important;
     }
   }
 }
