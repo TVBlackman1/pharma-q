@@ -6,29 +6,9 @@
       </swiper-slide>
       <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
 
-      <!--      <div class="swiper-button-prev" slot="button-prev"></div>-->
-      <!--      <div class="swiper-button-next" slot="button-next"></div>-->
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
-    <!--    <div class="image image-handler" ref="mainImageHandler">-->
-    <!--      -->
-    <!--    </div>-->
-    <!--    <img src="" alt="no image" ref="imgTest" class="image image-handler">-->
-
-    <!--    <div class="other-images">-->
-    <!--      <div class="image-handler arrow arrow-top"></div>-->
-    <!--      <ul class="list-elems" ref="secondaryImages" @click="secondaryImagesHandleClick">-->
-    <!--        <li class="image-handler list-elem" key="1">-->
-    <!--          <img :src="image1_url" alt="" class="img-inner">-->
-    <!--        </li>-->
-    <!--        <li class="image-handler list-elem" key="2">-->
-    <!--          <img :src="image2_url" alt="" class="img-inner">-->
-    <!--        </li>-->
-    <!--        <li class="image-handler list-elem" key="3">-->
-    <!--          <img :src="image3_url" alt="" class="img-inner">-->
-    <!--        </li>-->
-    <!--      </ul>-->
-    <!--      <div class="image-handler arrow arrow-bottom"></div>-->
-    <!--    </div>-->
 
   </div>
 </template>
@@ -138,7 +118,7 @@ export default {
   width: 100%;
 
   &::v-deep .swiper-pagination-bullet-custom {
-    $size: 10px;
+    $size: 8px;
     width: $size !important;
     height: $size !important;
     line-height: $size !important;
@@ -167,8 +147,33 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: bold;
-  //font-size: $font-size-huge * 2;
-  //background-color: $white;
+  //overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  & > img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.swiper-button-prev {
+  filter: $qq-neutral-filter;
+  transition: 0.15s;
+
+  &:hover {
+    filter: $qq-neutral-active-filter;
+  }
+}
+
+.swiper-button-next {
+  filter: $qq-neutral-filter;
+  transition: 0.15s;
+
+  &:hover {
+    filter: $qq-neutral-active-filter;
+  }
 }
 
 //.image-handler {

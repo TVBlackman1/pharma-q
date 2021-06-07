@@ -43,6 +43,7 @@ export default {
   /*align-items: center;*/
   display: grid;
   grid-template-columns: 200px 160px 1400px 1fr;
+  z-index: 2;
 }
 
 .header-el {
