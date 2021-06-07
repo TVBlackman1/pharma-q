@@ -4,21 +4,27 @@
       Похожие товары:
     </div>
     <div class="slider">
-      <div class="image-handler arrow arrow-left"></div>
-      <ul class="elems">
-        <li class="image-handler product" v-for="(product, index) in products" :key="index">
+      <swiper class="swiper" :options="swiperOption">
+        <swiper-slide v-for="(product, index) in products" :key="index" class="product">
           <div class="image">
             <img :src="product.image" alt="">
           </div>
           <div class="name"> {{ product.name }}</div>
-        </li>
-      </ul>
-      <div class="image-handler arrow arrow-right"></div>
+        </swiper-slide>
+
+        <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script>
+
+import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
   name: "SimilarProducts",
   data() {
@@ -43,32 +49,54 @@ export default {
         {
           name: "АПРЕФЛЮ",
           image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },        {
-          name: "ТАМИФЛЮ",
+        }, {
+          name: "АФЛЮДОЛ",
           image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
         },
-        // {
-        //   name: "ЦИКЛОФЕРОН",
-        //   image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        {
+          name: "ЦИКЛОФЕРОН",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        {
+          name: "КАГОЦЕЛ",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+      ],
+      swiperOption: {
+        // direction: 'vertical',
+        slidesPerView: 5,
+        // centeredSlides: true,
+        spaceBetween: 0,
+        slidesPerGroup: 1,
+        mousewheel: true,
+        // loop: true,
+        // loopFillGroupWithBlank: true,
+        // pagination: {
+        //   el: '.swiper-pagination',
+        //   clickable: true,
+        //   renderBullet(index, className) {
+        //     return `<span class="${className} swiper-pagination-bullet-custom"></span>`
+        //   }
         // },
-        // {
-        //   name: "КАГОЦЕЛ",
-        //   image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        // }
-      ]
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
+      }
     }
-  }
+  },
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
+  },
 }
 </script>
 
 <style scoped lang="scss">
 @import '~@/css/fonts.css';
-
-.image-handler {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
 
 .similar-products {
   & ._title {
@@ -78,74 +106,52 @@ export default {
 
   & .slider {
     margin-top: 15px;
-    width: 1150px;
+    width: 1092px;
     height: 160px;
-    //background-color: #A6A9FF;
 
-    //height: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-
-    & .elems {
-      //padding: 2em;
-      padding: 0;
-      display: flex;
-      flex-direction: row;
+    & .swiper {
+      height: 100%;
       width: 100%;
-      justify-content: space-between;
+      padding: 0 20px;
 
-      & .product {
-        list-style: none;
-        width: 166px;
-        height: 158px;
-        //background-color: #ADE2FF;
+      & .swiper-slide {
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
 
-        & .image {
-          background-color: #7CA7AC;
-          height: 130px;
-          width: 130px;
-          border-radius: 20px;
-          border: 3px solid #C3EAFF;
-          overflow: hidden;
+        &.product {
+          list-style: none;
+          width: 166px;
+          height: 158px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
 
-          & img {
-            object-fit: contain;
-            width: 100%;
-            height: 100%;
+          & .image {
+            //background-color: #7CA7AC;
+            height: 130px;
+            width: 130px;
+            border-radius: 20px;
+            border: 3px solid #C3EAFF;
+            overflow: hidden;
+
+            & img {
+              object-fit: contain;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          & .name {
+            font-family: Montserrat-medium, serif;
+            font-size: 18px;
           }
         }
-
-        & .name {
-          font-family: Montserrat-medium, serif;
-          font-size: 18px;
-        }
       }
     }
-
-    & .arrow {
-      height: 66px;
-      width: 66px;
-      background-size: 66px 66px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    & .arrow-left {
-      background-image: url("~@/assets/svg/navigate_before_black_24dp.svg");
-    }
-
-    & .arrow-right {
-      background-image: url("~@/assets/svg/navigate_next_black_24dp.svg");
-    }
-
   }
 }
 </style>
