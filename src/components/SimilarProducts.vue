@@ -14,8 +14,6 @@
         </swiper-slide>
 
         <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
-        <!--        <div class="swiper-button-prev" slot="button-prev"></div>-->
-        <!--        <div class="swiper-button-next" slot="button-next"></div>-->
       </swiper>
       <a class="arrow arrow-right" @click="swiper.slideNext()"></a>
     </div>
@@ -54,7 +52,7 @@ export default {
             name: "АПРЕФЛЮ",
             image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
           }, {
-            name: "АФЛЮДОЛ",
+            name: "ТАМИФЛЮ",
             image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
           },
           {
@@ -62,27 +60,16 @@ export default {
             image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
           },
           {
-            name: "КАГОЦЕЛ",
+            name: "АФЛЮДОЛ",
             image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
           },
         ]
       },
       swiperOption: {
-        // direction: 'vertical',
         slidesPerView: 6,
-        // centeredSlides: true,
         spaceBetween: 0,
         slidesPerGroup: 1,
         mousewheel: true,
-        // loop: true,
-        // loopFillGroupWithBlank: true,
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   clickable: true,
-        //   renderBullet(index, className) {
-        //     return `<span class="${className} swiper-pagination-bullet-custom"></span>`
-        //   }
-        // },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -122,7 +109,6 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    //padding: 12px 0;
 
     & .arrow {
       height: 66px;

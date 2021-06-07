@@ -1,22 +1,15 @@
 <template>
   <div class="info-price">
     <div class="paragraphs">
-      <div class="key">Производитель:</div>
-      <div class="value">Ниармедик Плюс ООО</div>
-
-      <div class="key">Форма выпуска:</div>
-      <div class="value">таб.</div>
-
-      <div class="key">Дозировка</div>
-      <div class="value">12 мг</div>
-
-      <div class="key">Фасовка</div>
-      <div class="value">N10</div>
+      <template v-for="(currentInfo, index) in info.array">
+        <div class="key" :key="index * 10">{{ currentInfo.name }}</div>
+        <div class="value" :key="index * 10 + 1">{{ currentInfo.value }}</div>
+      </template>
     </div>
     <div class="price-section">
       <div class="before-price">Цена:</div>
       <div class="price">
-        <div class="price-values">190 - 240</div>
+        <div class="price-values">{{ price.min }} - {{ price.max }}</div>
         <div class="after-price">руб.</div>
       </div>
     </div>
@@ -30,7 +23,24 @@
 
 <script>
 export default {
-  name: "InfoPrice"
+  name: "InfoPrice",
+  data() {
+    return {
+      info: {
+        count: 4,
+        array: [
+          {name: "Производитель:", value: "Ниармедик Плюс ООО"},
+          {name: "Форма выпуска:", value: "таб."},
+          {name: "Дозировка", value: "12 мг"},
+          {name: "Фасовка", value: "N10"},
+        ]
+      },
+      price: {
+        min: 190,
+        max: 240
+      }
+    }
+  }
 }
 </script>
 
@@ -54,6 +64,7 @@ export default {
 
 .price-section {
   margin-top: 30px;
+
   & .before-price {
     font-size: 18px;
     font-family: PT-Sans-regular, serif;

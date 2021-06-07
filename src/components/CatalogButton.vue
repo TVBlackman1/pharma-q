@@ -22,7 +22,7 @@ export default {
 .catalog-btn .btn {
   padding: 0.1em 0.5em;
   margin: 0;
-  background-color: $qq-strong;
+  //background-color: $qq-strong;
   border-radius: 14px;
   display: flex;
   align-items: center;
