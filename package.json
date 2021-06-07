@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "swiper": "^6.7.0",
+    "swiper": "^5.4.5",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

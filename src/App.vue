@@ -8,8 +8,9 @@
 </template>
 
 <script>
-import SiteHeader from "@/components/SiteHeader";
+
 import ProductPage from "@/components/ProductPage";
+import SiteHeader from "@/components/SiteHeader";
 
 export default {
   name: 'App',
