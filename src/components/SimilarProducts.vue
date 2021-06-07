@@ -1,11 +1,12 @@
 <template>
   <div class="similar-products">
     <div class="_title">
-      Похожие товары:
+      Похожие товары({{ products.count }}):
     </div>
     <div class="slider">
-      <swiper class="swiper" :options="swiperOption">
-        <swiper-slide v-for="(product, index) in products" :key="index" class="product">
+      <a class="arrow arrow-left" @click="swiper.slidePrev()"></a>
+      <swiper class="swiper" :options="swiperOption" ref="swiper">
+        <swiper-slide v-for="(product, index) in products.array" :key="index" class="product">
           <div class="image">
             <img :src="product.image" alt="">
           </div>
@@ -13,9 +14,10 @@
         </swiper-slide>
 
         <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
+        <!--        <div class="swiper-button-prev" slot="button-prev"></div>-->
+        <!--        <div class="swiper-button-next" slot="button-next"></div>-->
       </swiper>
+      <a class="arrow arrow-right" @click="swiper.slideNext()"></a>
     </div>
   </div>
 </template>
@@ -29,42 +31,45 @@ export default {
   name: "SimilarProducts",
   data() {
     return {
-      products: [
-        {
-          name: "ОРВИС ИММУНО",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "РИМАНТАДИН",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "АРБИДОЛ",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "ИНВАРИГИН",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "АПРЕФЛЮ",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        }, {
-          name: "АФЛЮДОЛ",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "ЦИКЛОФЕРОН",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-        {
-          name: "КАГОЦЕЛ",
-          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
-        },
-      ],
+      products: {
+        count: 8,
+        array: [
+          {
+            name: "ОРВИС ИММУНО",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "РИМАНТАДИН",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "АРБИДОЛ",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "ИНВАРИГИН",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "АПРЕФЛЮ",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          }, {
+            name: "АФЛЮДОЛ",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "ЦИКЛОФЕРОН",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+          {
+            name: "КАГОЦЕЛ",
+            image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+          },
+        ]
+      },
       swiperOption: {
         // direction: 'vertical',
-        slidesPerView: 5,
+        slidesPerView: 6,
         // centeredSlides: true,
         spaceBetween: 0,
         slidesPerGroup: 1,
@@ -83,6 +88,11 @@ export default {
           prevEl: '.swiper-button-prev',
         }
       }
+    }
+  },
+  computed: {
+    swiper() {
+      return this.$refs.swiper.$swiper;
     }
   },
   components: {
@@ -106,13 +116,35 @@ export default {
 
   & .slider {
     margin-top: 15px;
-    width: 1092px;
-    height: 160px;
+    width: 1112px;
+    height: 184px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    //padding: 12px 0;
+
+    & .arrow {
+      height: 66px;
+      width: 66px;
+      background-size: 66px 66px;
+      filter: $qq-neutral-filter;
+      transition: 0.15s;
+      &:hover {
+        cursor: pointer;
+        filter: $qq-neutral-active-filter
+      }
+    }
+    & .arrow-left {
+      background-image: url("~@/assets/svg/navigate_before_black_24dp.svg");
+    }
+    & .arrow-right {
+      background-image: url("~@/assets/svg/navigate_next_black_24dp.svg");
+    }
 
     & .swiper {
       height: 100%;
       width: 100%;
-      padding: 0 20px;
 
       & .swiper-slide {
         display: flex;
@@ -120,6 +152,13 @@ export default {
         align-items: center;
         width: 100%;
         height: 100%;
+        padding: 12px 0;
+        box-sizing: content-box;
+
+        &:hover {
+          background-color: #eef1f2;
+          cursor: pointer;
+        }
 
         &.product {
           list-style: none;
