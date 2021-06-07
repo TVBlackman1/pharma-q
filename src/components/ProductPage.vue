@@ -30,6 +30,7 @@ import HowToTake from "@/components/HowToTake";
 import SimilarProducts from "@/components/SimilarProducts";
 import AdSection from "@/components/ad-section";
 import ProductPageTabs from "@/components/ProductPageTabs";
+
 export default {
   name: "ProductPage",
   components: {ProductPageTabs, AdSection, SimilarProducts, HowToTake, InfoPrice, SliderCurrent}

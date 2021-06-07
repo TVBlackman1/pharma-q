@@ -6,26 +6,12 @@
     <div class="slider">
       <div class="image-handler arrow arrow-left"></div>
       <ul class="elems">
-        <li class="image-handler product">
-          <div class="image"></div>
-          <div class="name">ОРВИС ИММУНО</div>
+        <li class="image-handler product" v-for="(product, index) in products" :key="index">
+          <div class="image">
+            <img :src="product.image" alt="">
+          </div>
+          <div class="name"> {{ product.name }}</div>
         </li>
-        <li class="image-handler product">
-          <div class="image"></div>
-          <div class="name">РИМАНТАДИН</div>
-        </li>        <li class="image-handler product">
-        <div class="image"></div>
-        <div class="name">АРБИДОЛ</div>
-      </li>        <li class="image-handler product">
-        <div class="image"></div>
-        <div class="name">ИНВАРИГИН</div>
-      </li>        <li class="image-handler product">
-        <div class="image"></div>
-        <div class="name">АПРЕФЛЮ</div>
-      </li>        <li class="image-handler product">
-        <div class="image"></div>
-        <div class="name">ТАМИФЛЮ</div>
-      </li>
       </ul>
       <div class="image-handler arrow arrow-right"></div>
     </div>
@@ -34,7 +20,44 @@
 
 <script>
 export default {
-  name: "SimilarProducts"
+  name: "SimilarProducts",
+  data() {
+    return {
+      products: [
+        {
+          name: "ОРВИС ИММУНО",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        {
+          name: "РИМАНТАДИН",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        {
+          name: "АРБИДОЛ",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        {
+          name: "ИНВАРИГИН",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        {
+          name: "АПРЕФЛЮ",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },        {
+          name: "ТАМИФЛЮ",
+          image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        },
+        // {
+        //   name: "ЦИКЛОФЕРОН",
+        //   image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        // },
+        // {
+        //   name: "КАГОЦЕЛ",
+        //   image: "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg"
+        // }
+      ]
+    }
+  }
 }
 </script>
 
@@ -89,6 +112,13 @@ export default {
           width: 130px;
           border-radius: 20px;
           border: 3px solid #C3EAFF;
+          overflow: hidden;
+
+          & img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+          }
         }
 
         & .name {
