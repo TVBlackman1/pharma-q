@@ -11,30 +11,31 @@
       <swiper-slide>Slide 8</swiper-slide>
       <swiper-slide>Slide 9</swiper-slide>
       <swiper-slide>Slide 10</swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
-    </swiper>
-<!--    <div class="image image-handler" ref="mainImageHandler">-->
-<!--      -->
-<!--    </div>-->
-<!--    <img src="" alt="no image" ref="imgTest" class="image image-handler">-->
+      <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
 
-<!--    <div class="other-images">-->
-<!--      <div class="image-handler arrow arrow-top"></div>-->
-<!--      <ul class="list-elems" ref="secondaryImages" @click="secondaryImagesHandleClick">-->
-<!--        <li class="image-handler list-elem" key="1">-->
-<!--          <img :src="image1_url" alt="" class="img-inner">-->
-<!--        </li>-->
-<!--        <li class="image-handler list-elem" key="2">-->
-<!--          <img :src="image2_url" alt="" class="img-inner">-->
-<!--        </li>-->
-<!--        <li class="image-handler list-elem" key="3">-->
-<!--          <img :src="image3_url" alt="" class="img-inner">-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--      <div class="image-handler arrow arrow-bottom"></div>-->
-<!--    </div>-->
+      <!--      <div class="swiper-button-prev" slot="button-prev"></div>-->
+      <!--      <div class="swiper-button-next" slot="button-next"></div>-->
+    </swiper>
+    <!--    <div class="image image-handler" ref="mainImageHandler">-->
+    <!--      -->
+    <!--    </div>-->
+    <!--    <img src="" alt="no image" ref="imgTest" class="image image-handler">-->
+
+    <!--    <div class="other-images">-->
+    <!--      <div class="image-handler arrow arrow-top"></div>-->
+    <!--      <ul class="list-elems" ref="secondaryImages" @click="secondaryImagesHandleClick">-->
+    <!--        <li class="image-handler list-elem" key="1">-->
+    <!--          <img :src="image1_url" alt="" class="img-inner">-->
+    <!--        </li>-->
+    <!--        <li class="image-handler list-elem" key="2">-->
+    <!--          <img :src="image2_url" alt="" class="img-inner">-->
+    <!--        </li>-->
+    <!--        <li class="image-handler list-elem" key="3">-->
+    <!--          <img :src="image3_url" alt="" class="img-inner">-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--      <div class="image-handler arrow arrow-bottom"></div>-->
+    <!--    </div>-->
 
   </div>
 </template>
@@ -42,7 +43,7 @@
 <script>
 import serverImageHandler from "@/mixins/serverImageHandler";
 
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 export default {
@@ -52,19 +53,23 @@ export default {
       $secondaryImages: [],
       selectedElement: null,
       swiperOption: {
+        direction: 'vertical',
         slidesPerView: 3,
         spaceBetween: 30,
-        slidesPerGroup: 3,
+        slidesPerGroup: 1,
+        mousewheel: true,
         loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
+          renderBullet(index, className) {
+            return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
+          }
         },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
-          clickable: true
         }
       }
     }
@@ -75,8 +80,8 @@ export default {
   },
   watch: {
     selectedElement: [
-        'changeSecondaryStyle',
-        'setCurrentImageFromSecondary'
+      'changeSecondaryStyle',
+      'setCurrentImageFromSecondary'
     ]
   },
   methods: {
@@ -88,7 +93,7 @@ export default {
     },
     secondaryImagesHandleClick($event) {
       let target = $event.target
-      if(target.tagName.toLowerCase() !== "img")
+      if (target.tagName.toLowerCase() !== "img")
         return
       this.selectedElement = target
     },
@@ -116,7 +121,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .slider {
   //height: fit-content;
@@ -126,6 +131,43 @@ export default {
   //text-align: center;
   height: 300px;
   width: 400px;
+}
+
+.swiper {
+  height: 300px;
+  width: 100%;
+
+  .swiper-pagination-bullet-custom {
+    $size: 100px;
+    width: $size !important;
+    height: $size !important;
+    line-height: $size !important;
+    text-align: center;
+    color: #696969;
+    opacity: 0.7;
+    background: rgba(12, 14, 15, 0.2);
+    transition: all 0.15s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.swiper-pagination-bullet-active {
+      opacity: 1;
+      color: #fff;
+      background: #007aff;
+    }
+  }
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  //font-size: $font-size-huge * 2;
+  //background-color: $white;
 }
 
 //.image-handler {
