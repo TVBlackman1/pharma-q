@@ -147,11 +147,11 @@ export default {
           cursor: pointer;
 
           & .thumb-up {
-            filter: invert(100%) sepia(26%) saturate(4641%) hue-rotate(45deg) brightness(93%) contrast(86%);
+            filter: invert(68%) sepia(61%) saturate(423%) hue-rotate(65deg) brightness(92%) contrast(82%); // #69c75b
           }
 
           & .thumb-down {
-            filter: invert(11%) sepia(74%) saturate(7491%) hue-rotate(3deg) brightness(100%) contrast(122%);
+            filter: invert(10%) sepia(73%) saturate(7201%) hue-rotate(1deg) brightness(106%) contrast(120%); // #eb0000
           }
 
         }
