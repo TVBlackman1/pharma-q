@@ -8,11 +8,14 @@
 </template>
 
 <script>
+import mainEmitter from "@/emitters/mainEmitter";
+
 export default {
   name: "CatalogButton",
   methods: {
     handleClick() {
-      alert("click catalog")
+      // alert("click catalog")
+      mainEmitter.$emit('toggle-catalog-section')
     }
   }
 }
