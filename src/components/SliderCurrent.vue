@@ -1,7 +1,7 @@
 <template>
   <div class="slider">
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide v-for="(elem, ind) in imgSources" :key="ind">
+      <swiper-slide v-for="(elem, ind) in imgSources.array" :key="ind">
         <img :src="elem" alt="not loaded">
       </swiper-slide>
 
@@ -23,13 +23,15 @@ export default {
   name: "SliderCurrent",
   data() {
     return {
-      imgSources: [
-        "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg",
-        "http://95.79.208.251:25565/productsImages/kagocel-10tab-2.jpg",
-        "http://95.79.208.251:25565/productsImages/kagocel-10tab-3.jpg",
-        "http://95.79.208.251:25565/productsImages/kagocel-10tab-4.jpg"
-
-      ],
+      imgSources: {
+        count: 4,
+        array: [
+          "http://95.79.208.251:25565/productsImages/kagocel-10tab.jpg",
+          "http://95.79.208.251:25565/productsImages/kagocel-10tab-2.jpg",
+          "http://95.79.208.251:25565/productsImages/kagocel-10tab-3.jpg",
+          "http://95.79.208.251:25565/productsImages/kagocel-10tab-4.jpg"
+        ]
+      },
       selectedElement: null,
       swiperOption: {
         // direction: 'vertical',

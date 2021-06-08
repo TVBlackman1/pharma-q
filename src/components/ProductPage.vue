@@ -4,7 +4,7 @@
     <div class="main">
       <div class="pres">
         <div class="name">Кагоцел</div>
-        <div class="rating">рейтинг</div>
+        <div class="rating">4.58 / 5</div>
       </div>
       <div></div>
       <div></div>

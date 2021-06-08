@@ -70,10 +70,6 @@ export default {
         spaceBetween: 0,
         slidesPerGroup: 1,
         mousewheel: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }
       }
     }
   },
@@ -116,14 +112,17 @@ export default {
       background-size: 66px 66px;
       filter: $qq-neutral-filter;
       transition: 0.15s;
+
       &:hover {
         cursor: pointer;
         filter: $qq-neutral-active-filter
       }
     }
+
     & .arrow-left {
       background-image: url("~@/assets/svg/navigate_before_black_24dp.svg");
     }
+
     & .arrow-right {
       background-image: url("~@/assets/svg/navigate_next_black_24dp.svg");
     }
