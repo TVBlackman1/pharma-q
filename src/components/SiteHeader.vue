@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :style="`height: ${headerHeight}`">
     <div class="header-el">
       <logo />
     </div>
@@ -12,6 +12,7 @@
     <div class="header-el">
       <profile-button />
     </div>
+    <catalog-section :top="headerHeight"/>
   </div>
 </template>
 
@@ -20,9 +21,15 @@ import Logo from "@/components/Logo";
 import Search from "@/components/Search";
 import CatalogButton from "@/components/CatalogButton";
 import ProfileButton from "@/components/ProfileButton";
+import CatalogSection from "@/components/CatalogSection";
 export default {
   name: "SiteHeader",
-  components: {ProfileButton, CatalogButton, Search, Logo}
+  data() {
+    return {
+      headerHeight: "72px",
+    }
+  },
+  components: {CatalogSection, ProfileButton, CatalogButton, Search, Logo}
 }
 </script>
 
@@ -31,8 +38,9 @@ export default {
 @import '~vuetify/src/styles/styles';
 
 .header {
+  //$height: 72px;
   width: 100%;
-  height: 72px;
+  //height: $height;
   background: $qq-header-color;
   position: fixed;
   top: 0;
